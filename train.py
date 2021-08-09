@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader
 from torchvision.transforms import ToTensor
 
 if __name__ == '__main__':
-    batch_size = 256
+    batch_size = 128 #256
     train_dataset = mnist.MNIST(root='./train', train=True, transform=ToTensor())
     test_dataset = mnist.MNIST(root='./test', train=False, transform=ToTensor())
     train_loader = DataLoader(train_dataset, batch_size=batch_size)
@@ -18,14 +18,16 @@ if __name__ == '__main__':
     cost = CrossEntropyLoss()
     epoch = 100
 
+    print(len(train_loader))
+
     for _epoch in range(epoch):
         for idx, (train_x, train_label) in enumerate(train_loader):
             label_np = np.zeros((train_label.shape[0], 10))
             sgd.zero_grad()
             predict_y = model(train_x.float())
             loss = cost(predict_y, train_label.long())
-            if idx % 10 == 0:
-                print('idx: {}, loss: {}'.format(idx, loss.sum().item()))
+            #if idx % 50 == 0:
+            #    print('idx: {}, loss: {}'.format(idx, loss.sum().item()))
             loss.backward()
             sgd.step()
 
@@ -40,5 +42,5 @@ if __name__ == '__main__':
             correct += np.sum(_.numpy(), axis=-1)
             _sum += _.shape[0]
 
-        print('accuracy: {:.2f}'.format(correct / _sum))
-        torch.save(model, 'models/mnist_{:.2f}.pkl'.format(correct / _sum))
+        print('epoch : {},\taccuracy: {:.2f}%'.format(_epoch ,correct / _sum * 100))
+        torch.save(model, 'models/mnist_{:.4f}.pkl'.format(correct / _sum))
