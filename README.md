@@ -1,19 +1,12 @@
-# LeNet5-MNIST-PyTorch
+# AISE_fooling
 
-#### This is the simplest implementation of the paper "Gradient-based learning applied to document recognition" in PyTorch.
-#### Have a try with artificial intelligence!
-#### Feel free to ask anything!
+#### This is replication code for '[Deep Neural Networks are Easily Fooled: High Confidence Predictions for Unrecognizable Images](https://arxiv.org/pdf/1412.1897.pdf)' in pytorch
+
+##### Lenet-5 code is based on 'https://github.com/ChawDoe/LeNet-5-MNIST-PyTorch.git'
+
+
 ## Requirments
 Python3  
-PyTorch >= 0.4.0  
-torchvision >= 0.1.8
-## Usage
-```
-$git clone https://github.com/ChawDoe/LeNet-5-MNIST-PyTorch.git  
-$cd LeNet-5-MNIST-PyTorch  
-$python3 train.py  
-```
-## Hint
-This repo includes the mnist dataset.
-## Accuracy
-Average precision on test set: 99%
+torch  
+torchvision  
+(TBU)
